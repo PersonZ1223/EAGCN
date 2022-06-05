@@ -117,6 +117,9 @@ class EAGCN(BasicModel):
         self.Graph = self.dataset.getSparseGraph(self.scores)
         print(f"lgn is already to go(dropout:{self.config['dropout']})")
 
+    def update_score(self):
+        self.scores = self.pre_computer()
+        self.Graph = self.dataset.getSparseGraph(self.scores)
         # print("save_txt")
     def __dropout_x(self, x, keep_prob):
         size = x.size()
