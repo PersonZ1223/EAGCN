@@ -51,7 +51,7 @@ def BPR_train_original(dataset, recommend_model, loss_class, epoch, neg_k=1, w=N
         aver_loss += cri
         if world.tensorboard:
             w.add_scalar(f'BPRLoss/BPR', cri, epoch * int(len(users) / world.config['bpr_batch_size']) + batch_i)
-    model.EAGCN.update_score(recommend_model)
+    recommend_model.update_score()
     aver_loss = aver_loss / total_batch
     time_info = timer.dict()
     timer.zero()
