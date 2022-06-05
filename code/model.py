@@ -195,11 +195,7 @@ class EAGCN(BasicModel):
                 g_droped = self.Graph        
         else:
             g_droped = self.Graph
-        scores = self.scores.to(device=world.device)
-        #weighted_a = torch.matmul(g_droped, scores)
-        g_droped_dense = g_droped.to_dense()
-        sum = torch.sum(g_droped_dense, 1)
-        g_droped = g_droped/sum
+
         for layer in range(self.n_layers):
             if self.A_split:
                 temp_emb = []
