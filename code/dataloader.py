@@ -159,9 +159,9 @@ class LastFM(BasicDataset):
             dense = self.Graph.to_dense()
             D = torch.sum(dense, dim=1).float()
             D[D==0.] = 1.
-            D_sqrt = torch.sqrt(D).unsqueeze(dim=0)
-            dense = dense/D_sqrt
-            dense = dense/D_sqrt.t()
+            #D_sqrt = torch.sqrt(D).unsqueeze(dim=0)
+            dense = dense/D
+            dense = dense/D.t()
             index = dense.nonzero()
             data  = dense[dense >= 1e-9]
             assert len(index) == len(data)
